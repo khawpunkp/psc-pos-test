@@ -11,7 +11,7 @@ function SideBar({}: Props) {
   const sideMenu = [
     {
       label: 'สั่งซื้อและชำระเงิน',
-      url: 'purchase',
+      url: '',
     },
     {
       label: 'ประวัติใบเสร็จ',
