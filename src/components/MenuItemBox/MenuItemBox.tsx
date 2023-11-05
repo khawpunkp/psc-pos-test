@@ -4,14 +4,22 @@ import { Card, CardMedia, CardContent, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import MenuItemModal from '../MenuItemModal/MenuItemModal'
 
+type CurrentOrderItem = {
+  menuName: string
+  quantity: number
+  sweetLevel: number
+  extra: string[]
+}
+
 type Props = {
 	menu: {
 		menuName: string
 		img: string
 	}
+	addToOrder: (order: CurrentOrderItem) => void
 }
 
-function MenuItemBox({ menu }: Props) {
+function MenuItemBox({ menu, addToOrder }: Props) {
 	const [isModalOpen, setModalOpen] = useState(false)
 
 	const handleCloseModal = () => {
@@ -36,7 +44,7 @@ function MenuItemBox({ menu }: Props) {
 					</Typography>
 				</CardContent>
 			</Card>
-			{isModalOpen && <MenuItemModal onClose={handleCloseModal} menuName={menu.menuName} />}
+			{isModalOpen && <MenuItemModal onClose={handleCloseModal} menuName={menu.menuName}  addToOrder={addToOrder}/>}
 		</>
 	)
 }
