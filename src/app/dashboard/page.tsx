@@ -1,7 +1,7 @@
 'use client'
 
 import MenuItemBox from "@/components/MenuItemBox/MenuItemBox"
-import { Grid, Typography } from "@mui/material"
+import { Grid } from "@mui/material"
 import { useEffect, useState } from "react"
 
 type CurrentOrderItem = {

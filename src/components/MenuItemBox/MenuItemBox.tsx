@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardMedia, CardContent, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import MenuItemModal from '../MenuItemModal/MenuItemModal'
 
 type CurrentOrderItem = {

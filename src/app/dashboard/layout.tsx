@@ -6,14 +6,14 @@ type Props = {
 }
 
 function layout(props: Props) {
-  return (
-    <div> 
-			<SideBar/>
+	return (
+		<div>
+			<SideBar />
 			<main>
 				{props.children}
 			</main>
 		</div>
-  )
+	)
 }
 
 export default layout
