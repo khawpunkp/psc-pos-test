@@ -1,7 +1,7 @@
 'use client'
 
 import MenuItemBox from "@/components/MenuItemBox/MenuItemBox"
-import { Typography } from "@mui/material"
+import { Grid, Typography } from "@mui/material"
 import { useState } from "react"
 
 const initialCurrentOrder = [{
@@ -40,10 +40,14 @@ export default function Purchase() {
 
   return (
     <div className='bg-gray-400 h-screen py-6 px-6'>
-      <div className='mx-auto max-w-2xl'>
-        {menuList.map((menu) =>
-          <MenuItemBox menu={menu} />
-        )}
+      <div className='mx-auto max-w-4xl'>
+        <Grid container spacing={2}>
+          {menuList.map((menu) => (
+            <Grid item lg={3} key={menu.menuName}>
+              <MenuItemBox menu={menu} />
+            </Grid>
+          ))}
+        </Grid>
       </div>
     </div>
   )
