@@ -8,7 +8,7 @@ type CurrentOrderItem = {
   menuName: string
   quantity: number
   sweetLevel: number
-  extra: string[]
+  extras: string[]
 }
 
 type Props = {

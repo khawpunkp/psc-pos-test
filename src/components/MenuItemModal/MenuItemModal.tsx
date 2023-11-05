@@ -5,7 +5,7 @@ type CurrentOrderItem = {
   menuName: string
   quantity: number
   sweetLevel: number
-  extra: string[]
+  extras: string[]
 }
 
 type Props = {
@@ -18,28 +18,62 @@ function MenuItemModal({ onClose, menuName, addToOrder }: Props) {
 	const [sweetLevel, setSweetLevel] = useState<number>(100)
 	const [selectedExtras, setSelectedExtras] = useState<string[]>([])
 
+	const sweetLevelsList = [
+    {
+      label: "หวาน 120%",
+      value: 120,
+    },
+    {
+      label: "หวาน 100%",
+      value: 100,
+    },
+		{
+      label: "หวาน 50%",
+      value: 50,
+    },
+		{
+      label: "หวาน 25%",
+      value: 25,
+    },
+		{
+      label: "หวาน 0%",
+      value: 0,
+    }
+  ]
+
+	const extrasList = [
+    {
+      label: "วิปครีม +20",
+      value: 'whip',
+    },
+    {
+      label: "วานิลลาไซรัป +10",
+      value: 'vanilla',
+    }
+  ]
+
 	const handleSweetLevelChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = +event.target.value;
+		const value = +event.target.value
 		setSweetLevel(value)
 	}
 
 	const handleExtraChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const extra = event.target.value;
+    const extra = event.target.value
     setSelectedExtras((prevSelectedExtras) => {
       if (prevSelectedExtras.includes(extra)) {
-        return prevSelectedExtras.filter((item) => item !== extra);
+        return prevSelectedExtras.filter((item) => item !== extra)
       } else {
-        return [...prevSelectedExtras, extra];
+        return [...prevSelectedExtras, extra]
       }
-    });
-  };
+    })
+  }
 
 	const handleAddToOrder = () => {
 		const order: CurrentOrderItem = {
 			menuName: menuName,
 			quantity: 1,
 			sweetLevel: sweetLevel,
-			extra: selectedExtras
+			extras: selectedExtras
 		}
 		addToOrder(order)
 		onClose()
@@ -61,22 +95,20 @@ function MenuItemModal({ onClose, menuName, addToOrder }: Props) {
 						<FormLabel>ระดับความหวาน</FormLabel>
 						<RadioGroup
 							defaultValue={100}
-							value={sweetLevel}
 							onChange={handleSweetLevelChange}
 						>
-							<FormControlLabel value={120} control={<Radio />} label="หวาน 120%" />
-							<FormControlLabel value={100} control={<Radio />} label="หวาน 100%" />
-							<FormControlLabel value={50} control={<Radio />} label="หวาน 50%" />
-							<FormControlLabel value={25} control={<Radio />} label="หวาน 25%" />
-							<FormControlLabel value={0} control={<Radio />} label="หวาน 0%" />
+							{sweetLevelsList.map((sweetLevel, index) => (
+								<FormControlLabel value={sweetLevel.value} key={`${sweetLevel.value}-${index}`} control={<Radio />} label={sweetLevel.label} />
+							))}
 						</RadioGroup>
 					</FormControl>
 					<Divider />
 					<FormControl>
 						<FormLabel>เพิ่มเติม</FormLabel>
 						<FormGroup>
-							<FormControlLabel value='whip' control={<Checkbox onChange={handleExtraChange}/>} label="วิปครีม +20" />
-							<FormControlLabel value='vanilla' control={<Checkbox onChange={handleExtraChange}/>} label="วานิลลาไซรัป +10" />
+							{extrasList.map((extra, index) => (
+								<FormControlLabel value={extra.value} key={`${extra.value}-${index}`} control={<Checkbox onChange={handleExtraChange}/>} label={extra.label} />
+							))}
 						</FormGroup>
 					</FormControl>
 					<Divider />
